@@ -1,0 +1,78 @@
+https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=614
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    stack<char>st;
+    int n;
+    cin>>n;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+    {
+        while(!st.empty())
+        {
+            st.pop();
+        }
+        string s;
+        getline(cin,s);
+        cin>>s;
+        bool f = true;
+        for(int i=0;i<s.size();i++)
+        {
+
+             if(s[i]=='('||s[i]=='{'||s[i]=='[')
+                {
+                    st.push(s[i]);
+                }
+
+                else if(st.empty())
+                    {
+                        f = false;
+                        st.push('M');
+                        break;
+                    }
+
+                    else if(st.top()=='('&&s[i]==')')
+                    {
+                        st.pop();
+                    }
+                    else if(st.top()=='['&&s[i]==']')
+                    {
+
+                        st.pop();
+                    }
+
+                    else
+                    {
+                       f = false;
+                       st.push('M');
+                       break;
+                    }
+
+
+
+
+     }
+
+          if(!st.empty())
+          {
+              f = false;
+          }
+
+         if(f)
+         {
+             cout<<"Yes"<<endl;
+         }
+         else
+         {
+             cout<<"No"<<endl;
+         }
+    }
+    return 0;
+
+}
